@@ -1,0 +1,108 @@
+#include <vector>
+#include <math.h> // may need to use pow( )
+#include <iostream>
+using namespace std;
+
+//our merge that I've been dicking around with. I've tried using our original for loop then tested the waters with a while loop instead and came back to this for loop...
+/*template <class Comparable>
+void merge(vector<Comparable> &from, vector<Comparable> &temp, int part_index, int part_size) {
+
+   int index2 = part_index + part_size;
+   int index = part_index;
+   int endPart = part_index + part_size;
+   int endPart2 = part_index + (2 * part_size);
+   
+   for(int counter = index; counter < endPart2; counter++)
+   {
+      if(index >= endPart)
+      {
+         temp[counter] = from[index2];
+         index2++;
+      }
+      else if (index2 >= endPart2)
+      {
+         temp[counter] = from[index];
+         index++;
+      }
+      else if(from[index] < from[index2])
+      {
+         //cout << "from = " << from[index] << endl;
+         temp[counter] = from[index];
+         //cout << "ind = " << index << endl;
+         index++;
+         
+      }
+      else //if(index2 < endPart2)
+      {
+         //cout << "from = " << from[index2] << endl;
+         temp[counter] = from[index2];
+         //cout << "ind2 = " << index2 << endl;
+        // cout << "ind2val = " << from[index2] << endl;
+         index2++;
+      }
+//       else
+//       {
+//          temp[counter] = from[index];
+//          index++;
+//       }
+   }
+}*/
+
+//fukudas merge repurposed (doesn't sort properly)
+template <class Comparable>
+void merge(vector<Comparable> &origin, int first, int mid, int last) {
+   
+   vector<Comparable> temp(origin.size());
+   int first1 = first;
+   int last1 = mid;
+   int first2 = mid + 1;
+   int last2 = last;
+   
+   int index = first1;
+   for(; first1 <= last1 && first2 <= last2; ++index)
+      temp[index]	= ( origin[first1] < origin[first2] ) ?	origin[first1++]	: origin[first2++];
+      
+   for(; first1 <= last1; ++first1, ++index)
+      temp[index]	= origin[first1];
+      
+   for(; first2 <= last2; ++first2, ++index)
+      temp[index]	= origin[first2];
+      
+   for(index = first; index <= last; ++index)
+      origin[index] =	temp[index];   
+}
+
+template <class Comparable>
+void mergesort( vector<Comparable> &origin ) {
+    
+    int size = origin.size( );
+    int mid, last;
+    vector<Comparable> temp( size );  // this is only one temporary array.
+    
+    int part_index = 0, part_size = 1;
+    bool unsorted = true;
+    
+    while(unsorted) {
+        
+        for(; part_index < size; part_index += (2*part_size))
+        {
+            last = part_index + (2 * part_size);
+            mid = (part_index + last) / 2;
+            merge(origin, part_index, mid, last); 
+            //merge(origin, part_index, part_size);
+        }
+        
+        part_size *= 2;
+        part_index = 0;
+        
+        if(part_size*2 > size)
+            unsorted = !unsorted;
+    }
+    
+    cout << "temp array: " << endl;
+    for(int i = 0; i < temp.size(); i++)
+    {
+        cout << temp[i] << endl;
+    }
+}
+
