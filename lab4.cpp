@@ -50,6 +50,13 @@ int main(int argc, const char * argv[])
     int QanArray2[100];
     int QanArray3[1000];
     int QanArray4[10000];
+    
+       
+//NonRecursiveMergeSort
+    int ManArray1[10];
+    int ManArray2[100];
+    int ManArray3[1000];
+    int ManArray4[10000];
 
 //set and print-merge sort arrays
 //---------------------------------------------------------------------
@@ -95,6 +102,29 @@ int main(int argc, const char * argv[])
      //print it
      printArray(QanArray4, 10000);
     
+    
+    //set and print-non recursive merge sort arrays
+    //---------------------------------------------------------------------
+    
+    //set up an array with random values of 10
+    setArray(ManArray1, 10);
+    //print it
+    printArray(ManArray1, 10);
+    //set up an array with random values of 100
+    setArray(ManArray2, 100);
+    //print it
+    printArray(ManArray2, 100);
+    
+    //set up an array with random values of 1000
+    setArray(ManArray3, 1000);
+    //print it
+    printArray(ManArray3, 1000);
+    //set up an array with random values of 10000
+    setArray(ManArray4, 10000);
+    //print it
+    printArray(ManArray4, 10000);
+
+
     cout << "-----------------------------------------" <<
     endl << endl << endl << endl << endl;
 // for each of the arrays set up, mergesort
@@ -212,18 +242,95 @@ int main(int argc, const char * argv[])
      //print the time and save it
      cout << "Time in ms: " << Qtime10000 << "ms!" << endl << endl;
   
-  
-/**
-//sorting times
-//---------------------------------------------------------------------------------
-    cout << endl << endl << "-------------finished sorting!";
+   
+    // For each array, set up the Non-Recursive Merge Sort
+    //---------------------------------------------------------------------------------
     
-    cout << "Times: " << endl << "10 elements = " << time10 <<
-    endl << "the worst case is: " << bigO(10)<<endl
-    <<"100 elements = " << time100 << endl<<  "the worst case is: " << bigO(100)<<endl<<
-    endl << "1000 "<<
-    "elements = " << time1000 << endl<< "the worst case is: " << bigO(1000)<<endl<< endl << "10000 elements = " <<
-    time10000 << endl << "the worst case is: " << bigO(10000) << endl << endl; */
+// 10
+    //start the timer
+    clock_t Mbegin = clock();
+    //run the recursive merge sort
+    mergesort(ManArray1, 0, 10);
+    //stop the timer
+    clock_t Mend = clock();
+    //print results
+    printArray(ManArray1, 10);
+    //save the time
+    long double Mtime10 = diffclock(Mbegin, Mend);
+    //print the time
+    cout << "Time in ms: " << Mtime10 << "ms!" << endl << endl;
+    
+// 100
+    //start the timer
+    clock_t Mbegin2 = clock();
+    mergesort(ManArray2, 0, 100);
+    //stop the timer
+    clock_t Mend2 = clock();
+    //print the array
+    printArray(ManArray2, 100);
+    //save the time
+    long double Mtime100 = diffclock(Mbegin2, Mend2);
+    //print the time and save it
+    cout << "Time in ms: " << Mtime100 << "ms!" << endl << endl;
+    
+    
+//1000
+    //start the timer
+    clock_t Mbegin3 = clock();
+    mergesort(ManArray3, 0, 1000);
+    //stop the timer
+    clock_t Mend3 = clock();
+    //print the array
+    printArray(ManArray3, 1000);
+    //save the time
+    long  double Mtime1000 = diffclock(Mbegin3, Mend3);
+    //print the time and save it
+    cout << "Time in ms: " << Mtime1000 << "ms!" << endl << endl;
+    
+//10000
+    //start the timer
+    clock_t Mbegin4 = clock();
+    mergesort(ManArray4, 0, 10000);
+    //stop the timer
+    clock_t Mend4 = clock();
+    //print the array
+    printArray(ManArray4, 10000);
+    //save the time
+    long  double Mtime10000 = diffclock(Mbegin4, Mend4);
+    //print the time and save it
+    cout << "Time in ms: " << Mtime10000 << "ms!" << endl << endl;
+  
+     //sorting times
+     //---------------------------------------------------------------------------------
+     cout << endl << endl << "-------------finished sorting!" << endl << endl;
+     
+ //10
+     cout << "Time 10: " << endl 
+     << " Worst Case: " << bigO(10) << endl
+     << " MergeSort: " << time10 << endl
+     << " QuickSort: " << Qtime10 << endl
+     << "NR MergeSort: " << Mtime10 << endl << endl;
+     
+//100
+     cout << "Time 100: " << endl
+     << " Worst Case: " << bigO(100) << endl
+     << " MergeSort: " << time100 << endl
+     << " QuickSort: " << Qtime100 << endl
+     << "NR MergeSort: " << Mtime100 << endl << endl;
+
+//1000
+     cout << "Time 1000: " << endl
+     << " Worst Case: " << bigO(1000) << endl
+     << " MergeSort: " << time1000 << endl
+     << " QuickSort: " << Qtime1000 << endl
+     << "NR MergeSort: " << Mtime1000 << endl << endl;
+     
+//10000
+     cout << "Time 10000: " << endl
+     << " Worst Case: " << bigO(10000) << endl
+     << " MergeSort: " << time10000 << endl
+     << " QuickSort: " << Qtime10000 << endl
+     << "NR MergeSort: " << Mtime10000 << endl << endl;
     
     return 0;
 }//end main
@@ -395,3 +502,64 @@ double bigO(int n)
     return value;
 }//end bigO
 
+void nonRecMergeSort(int array[], int n){
+    
+    int lowList1 = 0;
+    int tempSize = 0;
+    int i, j, size, highList1, lowList2, highList2;
+    int tempArray[n];
+    
+    /*lowList1 lower bound of first pair and so on*/
+    for(size=1; size < n; size=size*2 )
+    {
+        /*Index for temp array*/
+        while( lowList1+size < n)
+        {
+            highList1=lowList1+size-1;
+            lowList2=highList1+1;
+            highList2=lowList2+size-1;
+            if( highList2>=n ) /* highList2 exceeds the limlt of array */
+                highList2=n-1;
+            /*Merge the two pairs with lower limits lowList1 and lowList2*/
+            i=lowList1;
+            j=lowList2;
+            
+            while(i<=highList1 && j<=highList2 )
+            {
+                if( array[i] <= array[j] ){
+                    tempArray[tempSize]=array[i];
+                    tempSize++;
+                    i++;
+                }
+                else{
+                    tempArray[tempSize]=array[j];
+                    tempSize++;
+                    j++;
+                }//end if
+                
+            }//end while
+            while(i<=highList1){
+                tempArray[tempSize]=array[i];
+                tempSize++;
+                i++;}//end while
+            while(j<=highList2){
+                tempArray[tempSize]=array[j];
+                tempSize++;
+                j++;
+            }//end while
+            
+            /**Merging completed**/
+            
+            lowList1=highList2+1; /*Take the next two pairs for merging */
+        }/*End of while*/
+        
+        for(i=lowList1; tempSize<n; i++){ /*any pair left */
+            tempArray[tempSize]=array[i];
+            tempSize++;
+        }
+        for(i=0;i<n;i++)            //set the original array to the temp
+            array[i]=tempArray[i];
+        
+    }/*End of for loop */
+    
+}//end myMerge
