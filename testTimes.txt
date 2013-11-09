@@ -1,0 +1,108 @@
+These are the test times that I tested, I would advise you to create and run your own tests:
+
+
+These are the test results for numbers 0-10000:
+
+1:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.21102
+ QuickSort: 0.19927
+NR MergeSort: 0.22481
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.93422
+ QuickSort: 0.93273
+NR MergeSort: 0.94457
+
+2:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.19916
+ QuickSort: 0.23443
+NR MergeSort: 0.2254
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 1.12491
+ QuickSort: 1.13366
+NR MergeSort: 1.13684
+
+3:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.20389
+ QuickSort: 0.19956
+NR MergeSort: 0.20306
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 1.036
+ QuickSort: 0.96415
+NR MergeSort: 1.13522
+
+4:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.1997
+ QuickSort: 0.20289
+NR MergeSort: 0.24004
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.95276
+ QuickSort: 1.00814
+NR MergeSort: 0.93778
+
+5:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.2051
+ QuickSort: 0.20007
+NR MergeSort: 0.22783
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.95424
+ QuickSort: 0.98279
+NR MergeSort: 0.92664
+
+6:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.22718
+ QuickSort: 0.19858
+NR MergeSort: 0.19806
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.95539
+ QuickSort: 1.01139
+NR MergeSort: 0.92855
+
+7:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.20101
+ QuickSort: 0.19772
+NR MergeSort: 0.20053
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.93966
+ QuickSort: 1.05375
+NR MergeSort: 0.92498
+
+8:
+Time 100000: 
+ Worst Case: 1.15129
+ MergeSort: 0.20083
+ QuickSort: 0.22634
+NR MergeSort: 0.19965
+
+Time 400000: 
+ Worst Case: 5.15969
+ MergeSort: 0.9486
+ QuickSort: 0.94968
+NR MergeSort: 1.03912
