@@ -139,10 +139,8 @@ void mergesort(vector<Comparable> &array){
         for(i=0;i<array.size();i++)
             array[i]=tempArray[i];
         
-        //  printf("\nSize=%d \nElements are : ",size);
-        // for( i = 0 ; i<n ; i++)
-        //   printf("%d ", arr[i]);
-        
+        lowList1 = 0;
+        tempSize = 0;
         
     }//End of for loop
     
