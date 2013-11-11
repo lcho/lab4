@@ -1,8 +1,20 @@
+/**
+ *  @file nonRecursiveMergeSort.cpp
+ *  @description 
+ *  @author Milan Novakovic
+ *  @author Lance Cho
+ *  @author Terence Schumacher
+ */
 #include <vector>
 #include <iostream>
 using namespace std;
 
 
+/**---------------------mergesort--------------------------------------
+ *  @brief << operator
+ *  @description 
+ *  @param array  the original array built in the lab4driver.cpp
+ */
 template <class Comparable>
 void mergesort(vector<Comparable> &array){
     
@@ -62,10 +74,12 @@ void mergesort(vector<Comparable> &array){
         for(i=0;i<array.size();i++)
             array[i]=tempArray[i];
         
+        // reset the lower index
         lowList1 = 0;
+        // reset the temporary array size
         tempSize = 0;
         
     }//End of for loop
     
     
-}//end myMerge
+}//end mergesort
