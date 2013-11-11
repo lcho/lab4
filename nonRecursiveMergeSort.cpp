@@ -11,8 +11,9 @@ using namespace std;
 
 
 /**---------------------mergesort--------------------------------------
- *  @brief << operator
- *  @description 
+ *  @brief mergesort method
+ *  @description a non-recursive implementation of the merge sort
+ *               that sorts an array using only one temp array
  *  @param array  the original array built in the lab4driver.cpp
  */
 template <class Comparable>
